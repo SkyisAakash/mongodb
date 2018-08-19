@@ -15,4 +15,12 @@ describe('Reading user out of database', () => {
                 done();
             });
     });
+
+    it('Finds a user with a perticular id', (done)=> {
+        User.findOne({ _id: joe._id })
+            .then((user) => {
+                assert(user.name === 'Joe');
+                done();
+            });
+    });
 });
