@@ -19,15 +19,33 @@ describe('Deleting a user', () => {
             });
     });
 
-    it('class method remove', () => {
-
+    it('class method remove', (done) => {
+        // Remove bunch of records
+        User.remove({ name: 'Joe' })
+            .then(() => User.findOne({name: 'Joe'}))
+            .then((user) => {
+                assert(user === null);
+                done();
+            });
     });
 
-    it('class method findAndRemove', () => {
-
+    it('class method findAndRemove', (done) => {
+        User.findOneAndRemove({name: 'Joe'})
+            .then(() => User.findOne({name: 'Joe'}))
+            .then((user) => {
+                assert(user === null);
+                done();
+            });
+        
     });
 
-    it('class method findByIdandRemove', () => {
-
+    it('class method findByIdAndRemove', (done) => {
+        User.findByIdAndRemove({_id: joe._id})
+            .then(() => User.find({name: 'Joe'}))
+            .then((user) => {
+                // console.log(user);
+                assert(user.length === 0);
+                done();
+            });
     });
 })
