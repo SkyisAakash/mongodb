@@ -49,7 +49,7 @@ describe('Updating records', () => {
         );
     });
 
-    it('can increment postcount by 1', (done) => {
+    xit('can increment postcount by 1', (done) => {
         User.update({name:'Joe'}, {$inc: {postCount: 10}})
             .then(() => User.findOne({name: 'Joe'}))
             .then((user) => {
