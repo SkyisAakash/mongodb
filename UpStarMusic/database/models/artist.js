@@ -1,7 +1,7 @@
 // Todo: Create Artist Model
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const AlbumSchema = require('./album');
 const ArtistSchema = new Schema({
     name: {
         type: String,
@@ -31,18 +31,19 @@ const ArtistSchema = new Schema({
     retired: {
         type: Boolean
     },
-    Albums: [{
-        type: Schema.Types.ObjectId,
-        ref: 'album'
-    }]
+    // Albums: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'album'
+    // }]
+    Albums: [AlbumSchema]
 
 })
 
-ArtistSchema.pre('remove', function(next){
-    const Album = mongoose.model('album')
-    Album.remove({ _id: { $in: this.Albums }})
-        .then(() => next())
-})
+// ArtistSchema.pre('remove', function(next){
+//     const Album = mongoose.model('album')
+//     Album.remove({ _id: { $in: this.Albums }})
+//         .then(() => next())
+// })
 
 const Artist  = mongoose.model('artist', ArtistSchema);
 module.exports = Artist;
