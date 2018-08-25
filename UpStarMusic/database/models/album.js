@@ -12,7 +12,7 @@ const AlbumSchema= new Schema({
         type: Number
     },
     numberTracks: {
-        type: String
+        type: Number
     },
     image: {
         type: String
@@ -20,7 +20,7 @@ const AlbumSchema= new Schema({
     revenue: {
         type: Number
     }
-})
+});
 
 // const Album = mongoose.model('album', AlbumSchema);
 // module.exports = Album;
